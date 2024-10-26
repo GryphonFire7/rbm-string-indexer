@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>88 string indexer</title>
+</head>
+<body>
+<label for="input">Input a comma-seperated list of numbers with NO SPACES: </label>
+<input id="input" name="input">
+<br>
+<label for="original">Use original string</label>
+<input type="radio" name="original?" id="original" checked="checked">
+<br>
+<label for="unoriginal">Remove 2018</label>
+<input type="radio" name="original?" id="unoriginal">
+<br>
+<button onclick="process()">Run ></button>
+<p>Output: </p>
+<p id="output" style="border: 1px solid black; height: 100px; width: 200px; background: whitesmoke;"></p>
+</body>
+</html>
+<script type="application/javascript">
+  function process() {
+    const input = document.getElementById("input")
+    const output = document.getElementById("output")
+    const use_original = document.getElementById("original").checked
+    const original = "80ZM8QD9R8V1SF2ZMO4WIONF5YX4I48X4I1XCM4MVQ47KPFSOJFA22K8NLRDC60XMZWIFG8TGH6M19NW1HU7JTW77NGG20YJSMMNJZ18MWTU9S7KE1I3V6H1"
+    const unoriginal = "ZMQD9RVSFZMO4WIONF5YX4I4X4IXCM4MVQ47KPFSOJFAKNLRDC6XMZWIFGTGH6M9NWHU7JTW77NGGYJSMMNJZMWTU9S7KEI3V6H"
+    let ret = []
+    input.value.split(",").forEach((n)=>{if (use_original) {ret.push(original[n-1])}else{ret.push(unoriginal[n-1])}})
+    output.innerHTML = ret.join("");
+  }
+</script>
