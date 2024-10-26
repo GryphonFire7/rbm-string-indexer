@@ -11,6 +11,9 @@
 <label for="ignore">Comma-seperated list of characters to ignore with NO SPACES:</label>
 <input id="ignore">
 <br>
+<label for="whitelist">Comma-seperated list of characters to whitelist with NO SPACES:</label>
+<input id="whitelist">
+<br>
 <button onclick="process()">Run ></button>
 <p>Output: </p>
 <p id="output" style="border: 1px solid black; height: 100px; width: 200px; background: whitesmoke;"></p>
@@ -18,17 +21,20 @@
 </html>
 <script type="application/javascript">
   function process() {
-    const input = document.getElementById("input")
-    const ignored = document.getElementById("ignore").value.split(",")
-    const output = document.getElementById("output")
+    const input = document.getElementById("input");
+    const ignored = document.getElementById("ignore").value.split(",");
+    const whitelisted = document.getElementById("whitelist").value.split(",");
+    const output = document.getElementById("output");
     const original = "80ZM8QD9R8V1SF2ZMO4WIONF5YX4I48X4I1XCM4MVQ47KPFSOJFA22K8NLRDC60XMZWIFG8TGH6M19NW1HU7JTW77NGG20YJSMMNJZ18MWTU9S7KE1I3V6H1";
     let edited = "";
     let ret = [];
+    console.log(whitelisted)
     original.split("").forEach((c) => {
-        if (!ignored.includes(c)) {
-            edited += c
+        if (!ignored.includes(c) && (whitelisted.length<=0 || whitelisted.includes(c)) ) {
+            edited += c;
         }
-      });
+    });
+    console.log(edited);
     input.value.split(",").forEach((n)=>{
         ret.push(edited[n-1])
     })
